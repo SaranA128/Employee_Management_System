@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Details</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        button 
+        {
+            background-color: grey;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;   
+        }
+        button:hover 
+        {
+            background-color: darkgrey;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+    <script>
+        window.addEventListener('pageshow', function (event) 
+        {
+            if (event.persisted) 
+            {
+                document.forms[0].reset();
+                location.reload();
+            }
+        });
+
+        function validateForm() {
+            const id = document.getElementById('id').value;
+            const idPattern = /^\d{3}$/;
+            if (!idPattern.test(id)) {
+                document.getElementById('error-message').textContent = 'Employee ID must be exactly 3 digits.';
+                return false;
+            }
+            return true;
+        }
+
+        function validatedigit() {
+            const idInput = document.getElementById('id').value;
+            const errorMessage = document.getElementById('error-message');
+            if (idInput.length !== 3) {
+                errorMessage.textContent = 'Employee ID must be exactly 3 digits.';
+                errorMessage.style.color = 'red';
+            } else {
+                errorMessage.textContent = 'Correct';
+                errorMessage.style.color = 'green';
+            }
+        }
+    </script>
+</head>
+<body>
+    <center>
+        <h1>Enter Employee Details</h1>
+        <br>
+        <br>
+        <form action="connect.php" method="post" onsubmit="return validateForm();">
+            <label for="id">Employee ID (3 digits):</label>
+            <input type="text" id="id" name="id" required oninput="validatedigit()">
+            <br>
+            <div id="error-message" class="error"></div>
+            <br>
+            <label for="name">Employee Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            
+            <label for="basic_pay">Basic Pay:</label>
+            <input type="text" id="basic_pay" name="basic_pay" required><br>
+            
+            <label for="working_days">Working Days:</label>
+            <input type="text" id="working_days" name="working_days" required><br>
+            <br>
+            <br>
+            <span><button type="submit">Submit</button></span>
+            <br>
+            <a href="getdata.html"><button type="button">View Data</button></a>
+            <a href="delete.php"><button type="button">Delete Data</button></a>
+            <a href="display.php"><button type="button">Get Data</button></a>
+        </form>
+    </center>
+</body>
+</html>
