@@ -28,7 +28,7 @@ Clone the repository:
 bash
 Run
 Copy code
-git clone https://github.com/yourusername/employee-management-system.git
+git clone https://github.com/SaranA128/Employee_Management_System.git
 Navigate to the project directory:
 
 bash
